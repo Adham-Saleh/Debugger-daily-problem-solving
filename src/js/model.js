@@ -46,9 +46,7 @@ export const generateProblem = async function () {
   resetSubmissions();
   if (curDay - prvDay === 1) {
     try {
-      const codeforces = await fetch(
-        `${CODEFORCES_API}problemset.problems`
-      );
+      const codeforces = await fetch(`${CODEFORCES_API}problemset.problems`);
       if (!codeforces.ok) throw new Error("Check connection");
       const allproblems = await codeforces.json();
       const { problems } = allproblems.result;
@@ -150,8 +148,9 @@ export const signin = async function (userData) {
       if (username === userData.username && password === userData.password) {
         localStorage.setItem("user", JSON.stringify(user.data()));
         return user.data();
-      } else throw new Error("Invaild Cardinals");
+      }
     }
+    throw new Error("Invaild Cardinals");
   } catch (err) {
     throw err;
   }
