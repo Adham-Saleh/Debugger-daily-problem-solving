@@ -43,7 +43,6 @@ export const generateProblem = async function () {
   const date = new Date();
   const curDay = date.getDate();
   const prvDay = await checkDayPassed();
-  resetSubmissions();
   if (curDay - prvDay === 1) {
     try {
       const codeforces = await fetch(`${CODEFORCES_API}problemset.problems`);
@@ -189,6 +188,7 @@ const storeSubmission = async function (user, problem) {
   try {
     const existingSubmissions = await updateDashboard();
     for (const submission of existingSubmissions) {
+      console.log(submission);
       if (user.username === submission.username)
         throw new Error("Problem already submitted");
     }
