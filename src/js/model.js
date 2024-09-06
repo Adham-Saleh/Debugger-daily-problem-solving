@@ -192,7 +192,7 @@ const storeSubmission = async function (user, problem) {
       if (user.username === submission.username)
         throw new Error("Problem already submitted");
     }
-    submissionData = {
+    const submissionData = {
       username: user.username,
       problem: problem.problem.name,
       time: problem.timeConsumedMillis,
